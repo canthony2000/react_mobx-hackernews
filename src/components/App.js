@@ -10,6 +10,4 @@ const App = ({ stories, onArchive }) =>
     />
   </div>
 
-  // remark
-
   export default App;
