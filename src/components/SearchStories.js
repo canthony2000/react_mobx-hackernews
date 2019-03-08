@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
+import { observable, action } from 'mobx';
+import { observer } from 'mobx-react';
 import Button from './Button';
 
+@observer
 class SearchStories extends Component {
+  @observable query = '';
+
   constructor(props)  {
     super(props);
-
-    this.state = {
-      query: '',
-    }
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
+  @action
   onChange(event) {
     const { value } = event.target;
-    this.setState(() => ({ query: value }));
+    this.query = value;
   }
 
+  @action
   onSubmit(event) {
-    const { query } = this.state;
-    if (query) {
+    if (this.query) {
       // TODO do API fetch stories
-      console.log(query);
+      console.log(this.query);
 
-      this.setState(() => ({ query: '' }));
+      this.query = '';
     }
   
     event.preventDefault();
@@ -35,7 +37,7 @@ class SearchStories extends Component {
       <form onSubmit={this.onSubmit}>
         <input
           type='text'
-          value={this.state.query}
+          value={this.query}
           onChange={this.onChange}
         />
         <Button type="submit">
