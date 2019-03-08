@@ -1,5 +1,9 @@
+import { configure } from 'mobx';
+
 import StoryStore from './storyStore';
 import ArchiveStore from './archiveStore';
+
+configure({ enforceActions: 'always' });
 
 class RootStore {
   constructor() {
