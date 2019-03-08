@@ -25,7 +25,7 @@ const COLUMNS = {
   },
 };
 
-const Stories = ({ storyStore, archiveStore }) =>
+const Stories = ({ storyStore }) =>
   <div className='stories'>
 
     <StoriesHeader columns={COLUMNS} />
@@ -35,7 +35,6 @@ const Stories = ({ storyStore, archiveStore }) =>
         key={story.objectID}
         story={story}
         columns={COLUMNS}
-        onArchive={archiveStore.archiveStory}
       />
     )}
   </div>
