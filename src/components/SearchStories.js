@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { observable, action } from 'mobx';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import Button from './Button';
+import { fetchStories } from '../api/story';
 
-@observer
+@inject('storyStore') @observer
 class SearchStories extends Component {
   @observable query = '';
 
@@ -22,9 +23,12 @@ class SearchStories extends Component {
 
   @action
   onSubmit(event) {
+    const { storyStore } = this.props;
+
     if (this.query) {
-      // TODO do API fetch stories
-      console.log(this.query);
+      fetchStories(this.query)
+        .then(result => storyStore.setStories(result.hits))
+        .catch(storyStore.setError);
 
       this.query = '';
     }
