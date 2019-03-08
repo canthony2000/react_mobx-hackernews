@@ -27,7 +27,7 @@ const COLUMNS = {
 const Stories = ({ stories, onArchive }) =>
   <div className='stories'>
 
-    <StoriesHeader columns={COLUMNS} />>
+    <StoriesHeader columns={COLUMNS} />
 
     {(stories || []).map(story =>
       <Story
